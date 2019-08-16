@@ -26,8 +26,10 @@ export class NuevoComponente implements OnChanges {}
 ```
 * Y por último definir el método __ngOnChanges__ que se ejecutará al cargar el componente o hacer cambios en las propiedades
 ```typescript
-ngOnChanges(changes: SimpleChanges): void {
-    throw new Error("Method not implemented.");
+export class NuevoComponente implements OnChanges {
+    ngOnChanges(changes: SimpleChanges): void {
+        throw new Error("Method not implemented.");
+    }
 }
 ```
 * El parámetro Changes de tipo SimpleChanges es un Objeto que incluye los cambios realizados en las propiedades
@@ -44,11 +46,47 @@ export class NuevoComponente implements OnChanges, OnInit {}
 ```
 * Finalmente solo debemos implementar el evento en mi componente
 ```typescript
-ngOnInit(): void {
-    throw new Error("Method not implemented.");
+export class NuevoComponente implements OnChanges, OnInit {
+    ngOnInit(): void {
+        throw new Error("Method not implemented.");
+    }
 }
 ```
-
+### ngOnDestroy
+* Se ejecuta justo antes de eliminar la instancia de un componente
+```typescript
+import { Component, OnChanges, SimpleChanges, OnInit, OnDestroy } from "@angular/core";
+```
+```typescript
+export class NuevoComponente implements OnChanges, OnInit, OnDestroy {
+    ngOnDestroy(): void {
+        throw new Error("Method not implemented.");
+    }
+}
+```
+### ngDoCheck
+* El método _DoCheck_ se ejecuta cada vez que se produce algún cambio en el componente o en la aplicación de Angular y es un método que se va a estar ejecutando frecuentemente.
+* Ejecutará cuando se produzca cualquier cambio o evento
+```typescript
+import { Component, OnChanges, SimpleChanges, OnInit, DoCheck } from "@angular/core";
+```
+```typescript
+export class NuevoComponente implements OnChanges, OnInit, DoCheck {
+    ngDoCheck(): void {
+        throw new Error("Method not implemented.");
+    }
+}
+```
+## LifeCycle Hooks
+- constructor
+- ngOnChanges
+- ngOnInit
+- ngDoCheck
+- - ngAfterContentInit
+- - ngAfterContentChecked
+- - ngAfterViewInit
+- - ngAfterViewChecked
+- ngOnDestroy
 
 ## Version
 
