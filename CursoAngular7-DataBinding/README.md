@@ -1,29 +1,85 @@
+# Data Binding
 
+## 1. Interpolación: (Hacia el DOM)
+#### AKA Poner un título dentro de la página
+Angular se encarga de insertar el valor de esa propiedad del componente entre las etiquetas `<div>` donde lo hemos definido. Se deben usar las dobles llaves y el nombre de variable definida en _ts_ `{{ variable }}`
+```typescript
+<h1> Contenido del titulo {{ titulo }}</h1>
+```
+```typescript
+export class AppComponent {
+  titulo: any = "este es el titulo dentro de ts";
+}
+```
 
-# CursoAngular7
+## 2. Property binding: (Hacia el DOM)
+#### AKA Pasar de un padre a un hijo
+* Generar hijo
+```typescript
+ng g c hijo
+```
+* Declarar variable datos en el padre
+```typescript
+export class AppComponent {
+  datos: any = { Nombre: "Miguel", Apellido: "Ruano", Edad: 24, Documento: "273123"};
+}
+```
+* Declarar la llamada desde html del padre (debería mostrar _hijo works!_)
+```html
+<app-hijo></app-hijo>
+```
+Ahora modificar...
+* Declarar la variable en el padre como _propiedadhijo_ y usar la variable declarada en TS como _datos_
+```html
+<app-hijo [propiedadhijo]="datos"></app-hijo>
+```
+* Recibir esa variable dentro el TypeScript del hijo, con el decorador `input`
+```typescript
+  @Input("propiedadhijo") datohijo: any;
+```
+No olvidarse de importar `input`
+```typescript
+import {Input} from "@angular/core";
+```
+* Usar la variable dentro del html del hijo
+```typescript
+<h1> hijo works! {{datoshijo | json}} </h1>
+```
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.1.
+## 3. Databinding doble y de eventos (Desde/Hacia el DOM)
+### AKA Recibir y pasar datos desde elementos del DOOM
+* Ejemplo:
+```html
+<input [(ngModel)]="todo.subject">
+```
+* Clase padre `app.component.ts`
+```typescript
+<input type="text" [(ngModel)]="datos.Nombre" class="form-control">
+```
+* Clase `app.module.ts`
+```typescript
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+```
+Mas abajo
+```typescript
+@NgModule({
+  imports: [
+    FormsModule
+   ],
+})
+```
+### Evento Boton
+* Archivo `html` padre
+```typescript
+<button type="button" 
+    (click)="eventoBoton()"
+```
+* Archivo `TS` padre
+```typescript
+export class AppComponent {
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  eventoBoton(){
+    console.log("Ejecutamos el evento para el boton");
+  }
+}
+```
