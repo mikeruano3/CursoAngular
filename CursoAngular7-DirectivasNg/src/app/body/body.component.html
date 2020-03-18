@@ -2,15 +2,30 @@
 
 <div class="row">
     <div class="col-10">
+      
     </div>
     <div class="col-2">
       <div class="form-group">
             <label for="categoria">Categoria </label>
             <select class="form-control" id="selectoyNoticias" (change)="eventoControl($event)">
-              <option value="1">Opcion 1</option>
-              <option value="1">Opcion 1</option>
-              <option value="1">Opcion 1</option>
+              <option *ngFor="let objeto of categorias" value="{{objeto.codigo}}">{{objeto.texto}}</option>
             </select>
       </div>
     </div>    
+</div>
+
+<div class="row">
+    <div class="col-12">
+      <div *ngFor="let noticia of noticias">
+            <div class="row">
+                <div class="col-4">
+                  <img style="width: 380px;" src="{{noticia.imagen}}">
+                </div>
+                <div class="col-8">
+                  <h5>{{noticia.titulo}}</h5>
+                  <p>{{noticia.texto}}</p>
+                </div>
+            </div>
+      </div>
+    </div>
 </div>
