@@ -1,0 +1,6 @@
+[
+  { "id": 1, "nombre": "Andrew", "cui": "2742187980403", "urlImagen": "", "saldo": 30 },
+  { "id": 2, "nombre": "Brandon", "cui": "2742187980403", "urlImagen": "", "saldo": 25 },
+  { "id": 3, "nombre": "Christina", "cui": "2742187980403", "urlImagen": "", "saldo": 26 },
+  { "id": 4, "nombre": "Elena", "cui": "2742187980403", "urlImagen": "", "saldo": 28 }
+]
